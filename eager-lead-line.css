@@ -12,6 +12,7 @@
 
 .eager-lead-line:before, .eager-lead-line:after, .eager-lead-line *, .eager-lead-line *:before, .eager-lead-line *:after {
   display: block !important;
+  line-height: normal !important;
   box-sizing: inherit !important
 }
 
@@ -98,7 +99,7 @@
       content: "\00D7";
       display: block !important;
       font-size: 2em !important;
-      line-height: .75em;
+      line-height: .75em !important;
       height: 1em;
       width: 1em;
       top: 0;
@@ -125,7 +126,7 @@
 
     .eager-lead-line-text {
       display: inline-block !important;
-      line-height: 1.3em;
+      line-height: 1.3em !important;
       margin: 0 .6em .4em .6em !important
     }
 
