@@ -32,15 +32,15 @@
     '<div class="eager-lead-line-content">' +
       '<div class="eager-lead-line-text"></div>' +
       (options.goal === 'announcement' ? '' :
-      '<form class="eager-lead-line-form">' +
+      '<' + (options.goal === 'signup' ? 'form' : 'div') + ' class="eager-lead-line-form">' +
         (options.goal !== 'signup' ? '' :
         '<input name="email" class="eager-lead-line-input" type="email" placeholder="Email address" spellcheck="false" required>') +
         (options.goal === 'cta' ?
         '<a target="_blank" class="eager-lead-line-link">' : '') +
-          '<button type="submit" class="eager-lead-line-button"></button>' +
+          '<button ' + (options.goal === 'signup' ? 'type="submit" ' : '') + 'class="eager-lead-line-button"></button>' +
         (options.goal === 'cta' ?
         '</a>' : '') +
-      '</form>') +
+      '</' + (options.goal === 'signup' ? 'form' : 'div') + '>') +
     '</div>' +
     '<div class="eager-lead-line-branding">' +
       '<a class="eager-lead-line-branding-link" href="https://eager.io?utm_source=eager_leads_powered_by_link" target="_blank">Powered by Eager</a>' +
