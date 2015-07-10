@@ -1,0 +1,117 @@
+{
+  "resources": {
+    "head": [
+      {
+        "type": "style",
+        "src": "eager-lead-line.css"
+      }
+    ],
+    "body": [
+      {
+        "type": "script",
+        "src": "eager-lead-line.js"
+      }
+    ]
+  },
+  "options": {
+    "properties": {
+      "goal": {
+        "order": 1,
+        "title": "What’s the goal you’re trying to achieve?",
+        "type": "string",
+        "format": "radios",
+        "enum": [
+          "cta",
+          "signup",
+          "announcement"
+        ],
+        "enumNames": {
+          "cta": "Drive traffic<span class=\"help-text\">Show a message and a juicy button your visitors will want to click.</span>",
+          "signup": "Collect email<span class=\"help-text\">Show a message and an input for visitors to enter their email.</span>",
+          "announcement": "Make an announcement<span class=\"help-text\">Just display a simple message.</span>"
+        },
+        "default": "cta"
+      },
+
+
+      "ctaText": {
+        "order": 2,
+        "showIf": {
+          "goal": "cta"
+        },
+        "title": "Message text",
+        "type": "string",
+        "format": "textarea",
+        "default": "We just added a new product! You’ll want to check this out: "
+      },
+      "ctaButtonText": {
+        "order": 3,
+        "showIf": {
+          "goal": "cta"
+        },
+        "title": "Button text",
+        "type": "string",
+        "default": "Let’s go"
+      },
+
+
+      "signupText": {
+        "order": 4,
+        "showIf": {
+          "goal": "signup"
+        },
+        "title": "Message text",
+        "type": "string",
+        "format": "textarea",
+        "default": "Join our mailing list to be the first to know what we’re up to!"
+      },
+      "signupButtonText": {
+        "order": 5,
+        "showIf": {
+          "goal": "signup"
+        },
+        "title": "Button text",
+        "type": "string",
+        "default": "Sign up"
+      },
+
+
+      "announcementText": {
+        "order": 6,
+        "showIf": {
+          "goal": "announcement"
+        },
+        "title": "Message text",
+        "type": "string",
+        "format": "textarea",
+        "default": "Sale! Everything is 75% off this entire week."
+      },
+
+
+      "size": {
+        "order": 7,
+        "title": "Size",
+        "type": "string",
+        "format": "radios",
+        "enum": [
+          "slim",
+          "normal",
+          "grand"
+        ],
+        "enumNames": {
+          "slim": "Slim",
+          "normal": "Normal",
+          "grand": "Grand"
+        },
+        "default": "normal"
+      },
+      "color": {
+        "order": 8,
+        "title": "Accent color",
+        "type": "string",
+        "format": "color",
+        "default": "#0099ff"
+      }
+    }
+  }
+}
