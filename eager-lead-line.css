@@ -217,6 +217,7 @@
       max-width: 16em !important;
       white-space: nowrap !important;
       overflow: hidden !important;
+      box-shadow: none !important;
       text-overflow: ellipsis !important
     }
 
@@ -260,10 +261,12 @@
     }
 
     .eager-lead-line-button:not([disabled]):hover {
+      box-shadow: none !important;
       opacity: 1
     }
 
     .eager-lead-line-button:not([disabled]):hover:active {
+      box-shadow: none !important;
       opacity: .7
     }
 
