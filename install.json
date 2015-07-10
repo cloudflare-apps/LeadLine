@@ -42,7 +42,7 @@
         "title": "Message text",
         "type": "string",
         "format": "textarea",
-        "default": "We just added a new product! You’ll want to check this out: "
+        "default": "We just launched an amazing new product!"
       },
       "ctaButtonText": {
         "order": 3,
@@ -51,7 +51,7 @@
         },
         "title": "Button text",
         "type": "string",
-        "default": "Let’s go"
+        "default": "Take me there"
       },
       "ctaLinkAddress": {
         "order": 4,
