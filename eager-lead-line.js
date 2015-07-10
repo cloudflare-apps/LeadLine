@@ -1,11 +1,16 @@
 (function(){
-  if (!document.body.addEventListener || !document.body.setAttribute || !document.body.querySelector || !document.body.classList || !document.body.classList.add) {
+  if (!document.body.addEventListener || !document.body.setAttribute || !document.body.querySelector || !document.body.classList || !document.body.classList.add || !window.localStorage) {
     return
   }
 
-  var options, colorStyle, htmlStyle, el, lastElHeight, show, hide, setHTMLStyle;
+  var options, optionsString, colorStyle, htmlStyle, el, lastElHeight, show, hide, setHTMLStyle;
 
   options = INSTALL_OPTIONS;
+
+  optionsString = JSON.stringify(options);
+  if (localStorage[optionsString]) {
+    return;
+  }
 
   document.documentElement.setAttribute('eager-lead-line-goal', options.goal);
 
@@ -63,10 +68,14 @@
   show();
 
   hide = function() {
+    localStorage[optionsString] = true;
     document.documentElement.setAttribute('eager-lead-line-show', 'false');
     document.body.removeChild(htmlStyle);
   };
   el.querySelector('.eager-lead-line-close-button').addEventListener('click', hide);
+  if (options.goal == 'cta') {
+    el.querySelector('.eager-lead-line-link').addEventListener('click', hide);
+  }
 
   htmlStyle = document.createElement('style');
   lastElHeight = 0;
