@@ -50,7 +50,6 @@
   color: #fff;
   font-weight: bold;
   text-align: center !important;
-  box-shadow: 0 0 .0625em rgba(0, 0, 0, .5);
   -webkit-transform: translate3d(0, -300%, 0);
   transform: translate3d(0, -300%, 0)
 }
