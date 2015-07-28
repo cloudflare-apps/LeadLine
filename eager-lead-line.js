@@ -65,16 +65,30 @@
       xhr = new XMLHttpRequest();
 
       callback = function(xhr) {
+        var jsonRespose, message;
+
         button.removeAttribute('disabled');
 
         if (xhr && xhr.target && xhr.target.status === 200) {
-          // TODO - handle different success messages separately
-          // {next: "/thanks", success: "email sent"}
-          // {success: "confirmation email sent"}
-          hide();
+          form.parentNode.removeChild(form);
+          document.documentElement.setAttribute('eager-lead-line-goal', 'announcement');
+          setHTMLStyle();
+          message = options.signupSuccessText;
+          try {
+            if (xhr.target.response) {
+              jsonRespose = JSON.parse(xhr.target.response);
+              if (jsonRespose && jsonRespose.success === 'confirmation email sent') {
+                message = 'Formspree has sent an email to ' + options.signupEmail + ' for verification.';
+              }
+            }
+          } catch (err) {}
+          setTimeout(hide, 3000);
+        } else {
+          message = 'Whoops, something didn’t work. Please try again:';
         }
 
-        // TODO - handle errors in a visual way
+        el.querySelector('.eager-lead-line-text').innerHTML = message;
+        setHTMLStyle();
       };
 
       params = 'email=' + encodeURIComponent(el.querySelector('input[type="email"]').value);

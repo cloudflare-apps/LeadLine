@@ -93,10 +93,20 @@
         "type": "string",
         "default": "Sign up"
       },
+      "signupSuccessText": {
+        "order": 8,
+        "showIf": {
+          "goal": "signup"
+        },
+        "title": "Thank you text",
+        "description": "This text will display after visitors enter their email.",
+        "type": "string",
+        "default": "Thanks for signing up! :)"
+      },
 
 
       "announcementText": {
-        "order": 8,
+        "order": 9,
         "showIf": {
           "goal": "announcement"
         },
@@ -108,7 +118,7 @@
 
 
       "color": {
-        "order": 9,
+        "order": 10,
         "title": "Accent color",
         "type": "string",
         "format": "color",
