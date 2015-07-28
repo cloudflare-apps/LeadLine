@@ -39,7 +39,7 @@
 .eager-lead-line {
   position: fixed;
   display: block !important;
-  z-index: 8000;
+  z-index: 18004;
   top: 0;
   left: 0;
   right: 0;
@@ -75,7 +75,7 @@
   .eager-lead-line-close-button {
     cursor: pointer;
     position: absolute;
-    z-index: 8005;
+    z-index: 18005;
     right: 0;
     top: 0;
     bottom: 0;
