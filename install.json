@@ -27,7 +27,7 @@
         ],
         "enumNames": {
           "cta": "Drive traffic<span class=\"help-text\">Show a message and a juicy button your visitors will want to click.</span>",
-          "signup": "Collect email<span class=\"help-text\">Show a message and an input for visitors to enter their email.</span>",
+          "signup": "Collect email addresses<span class=\"help-text\">Show a message and an input for visitors to enter their email. <small>Powered by <a href=\"http://formspree.io\" target=\"_blank\" class=\"with-inherited-color\"><strong>Forspree</strong></a>.</small></span>",
           "announcement": "Make an announcement<span class=\"help-text\">Just display a simple message.</span>"
         },
         "default": "cta"
@@ -64,8 +64,18 @@
       },
 
 
-      "signupText": {
+      "signupEmail": {
         "order": 5,
+        "showIf": {
+          "goal": "signup"
+        },
+        "title": "Email address to send signups to",
+        "description": "<strong>Required</strong>; e.g. <em>your@email.com</em>",
+        "type": "string",
+        "default": ""
+      },
+      "signupText": {
+        "order": 6,
         "showIf": {
           "goal": "signup"
         },
@@ -75,7 +85,7 @@
         "default": "Join our mailing list to be the first to know what we’re up to!"
       },
       "signupButtonText": {
-        "order": 6,
+        "order": 7,
         "showIf": {
           "goal": "signup"
         },
@@ -86,7 +96,7 @@
 
 
       "announcementText": {
-        "order": 7,
+        "order": 8,
         "showIf": {
           "goal": "announcement"
         },
@@ -98,7 +108,7 @@
 
 
       "color": {
-        "order": 8,
+        "order": 9,
         "title": "Accent color",
         "type": "string",
         "format": "color",

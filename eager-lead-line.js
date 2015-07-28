@@ -32,7 +32,7 @@
     '<div class="eager-lead-line-content">' +
       '<div class="eager-lead-line-text"></div>' +
       (options.goal === 'announcement' ? '' :
-      '<' + (options.goal === 'signup' ? 'form' : 'div') + ' class="eager-lead-line-form">' +
+      '<' + (options.goal === 'signup' ? 'form' : 'div') + (options.goal === 'signup' && options.signupEmail ? ' action="http://formspree.io/' + options.signupEmail + '"' : '') + ' class="eager-lead-line-form">' +
         (options.goal !== 'signup' ? '' :
         '<input name="email" class="eager-lead-line-input" type="email" placeholder="Email address" spellcheck="false" required>') +
         (options.goal === 'cta' ?
@@ -50,8 +50,46 @@
   if (options.goal !== 'announcement') {
     el.querySelector('.eager-lead-line-button').appendChild(document.createTextNode(options[options.goal + 'ButtonText'] || '&nbsp;'));
   }
-  if (options.goal == 'cta') {
+  if (options.goal === 'cta') {
     el.querySelector('.eager-lead-line-link').setAttribute('href', options.ctaLinkAddress);
+  }
+  if (options.goal === 'signup') {
+    el.querySelector('form').addEventListener('submit', function(event){
+      event.preventDefault();
+
+      var form, button, url, xhr, callback, params;
+
+      form = el.querySelector('form');
+      button = el.querySelector('button[type="submit"]');
+      url = form.action;
+      xhr = new XMLHttpRequest();
+
+      callback = function(xhr) {
+        button.removeAttribute('disabled');
+
+        if (xhr && xhr.target && xhr.target.status === 200) {
+          // TODO - handle different success messages separately
+          // {next: "/thanks", success: "email sent"}
+          // {success: "confirmation email sent"}
+          hide();
+        }
+
+        // TODO - handle errors in a visual way
+      };
+
+      params = 'email=' + encodeURIComponent(el.querySelector('input[type="email"]').value);
+
+      if (!url) {
+        return;
+      }
+
+      button.setAttribute('disabled', 'disabled');
+      xhr.open('POST', url);
+      xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+      xhr.setRequestHeader('Accept', 'application/json');
+      xhr.onload = callback.bind(xhr);
+      xhr.send(params);
+    });
   }
   document.body.appendChild(el);
 
