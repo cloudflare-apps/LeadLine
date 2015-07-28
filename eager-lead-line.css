@@ -156,6 +156,7 @@
       border: 0 !important;
       font-size: .9em !important;
       padding: .65em .8em .6em !important;
+      height: auto !important;
       margin-right: .5em !important;
       width: 16em !important;
       border-radius: .1875em
@@ -207,6 +208,7 @@
       width: auto !important;
       background: #fff !important;
       padding: .65em 1.6em .6em .9em !important;
+      height: auto !important;
       border-radius: .1875em;
       font-weight: bold;
       text-transform: uppercase;
