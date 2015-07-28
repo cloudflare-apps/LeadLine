@@ -32,7 +32,7 @@
     '<div class="eager-lead-line-content">' +
       '<div class="eager-lead-line-text"></div>' +
       (options.goal === 'announcement' ? '' :
-      '<' + (options.goal === 'signup' ? 'form' : 'div') + (options.goal === 'signup' && options.signupEmail ? ' action="http://formspree.io/' + options.signupEmail + '"' : '') + ' class="eager-lead-line-form">' +
+      '<' + (options.goal === 'signup' ? 'form' : 'div') + (options.goal === 'signup' && options.signupEmail ? ' action="//formspree.io/' + options.signupEmail + '"' : '') + ' class="eager-lead-line-form">' +
         (options.goal !== 'signup' ? '' :
         '<input name="email" class="eager-lead-line-input" type="email" placeholder="Email address" spellcheck="false" required>') +
         (options.goal === 'cta' ?
