@@ -27,7 +27,7 @@
         ],
         "enumNames": {
           "cta": "Drive traffic<span class=\"help-text\">Show a message and a juicy button your visitors will want to click.</span>",
-          "signup": "Collect email addresses<span class=\"help-text\">Show a message and an input for visitors to enter their email. <small>Powered by <a href=\"http://formspree.io\" target=\"_blank\" class=\"with-inherited-color\"><strong>Forspree</strong></a>.</small></span>",
+          "signup": "Collect email addresses<span class=\"help-text\">Show a message and an input for visitors to enter their email. <small>Powered by <a href=\"http://formspree.io\" target=\"_blank\" class=\"with-inherited-color\"><strong>Formspree</strong></a>.</small></span>",
           "announcement": "Make an announcement<span class=\"help-text\">Just display a simple message.</span>"
         },
         "default": "cta"
