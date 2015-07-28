@@ -65,7 +65,7 @@
       xhr = new XMLHttpRequest();
 
       callback = function(xhr) {
-        var jsonRespose, message;
+        var jsonResponse, message;
 
         button.removeAttribute('disabled');
 
@@ -76,8 +76,8 @@
           message = options.signupSuccessText;
           try {
             if (xhr.target.response) {
-              jsonRespose = JSON.parse(xhr.target.response);
-              if (jsonRespose && jsonRespose.success === 'confirmation email sent') {
+              jsonResponse = JSON.parse(xhr.target.response);
+              if (jsonResponse && jsonResponse.success === 'confirmation email sent') {
                 message = 'Formspree has sent an email to ' + options.signupEmail + ' for verification.';
               }
             }
