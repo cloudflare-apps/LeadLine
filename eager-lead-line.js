@@ -1,5 +1,5 @@
 (function(){
-  if (!document.body.addEventListener || !document.body.setAttribute || !document.body.querySelector || !document.body.classList || !document.body.classList.add || !window.localStorage) {
+  if (!window.addEventListener || !document.documentElement.setAttribute || !document.querySelector || !document.documentElement.classList || !document.documentElement.classList.add || !window.localStorage) {
     return
   }
 
@@ -25,9 +25,9 @@
       'color: ' + options.color + ' !important' +
     '}' +
   '';
-  document.body.appendChild(colorStyle);
 
   el = document.createElement('eager-lead-line');
+  el.addEventListener('touchstart', function(){}, false); // iOS :hover CSS hack
   el.className = 'eager-lead-line';
   el.innerHTML = '' +
     '<div class="eager-lead-line-close-button"></div>' +
@@ -65,6 +65,12 @@
       button = el.querySelector('button[type="submit"]');
       url = form.action;
       xhr = new XMLHttpRequest();
+
+      if (isPreview) {
+        form.parentNode.removeChild(form);
+        el.querySelector('.eager-lead-line-text').innerHTML = '(Form submissions are simulated during the Eager preview.)';
+        return;
+      }
 
       callback = function(xhr) {
         var jsonResponse, message;
@@ -107,7 +113,6 @@
       xhr.send(params);
     });
   }
-  document.body.appendChild(el);
 
   show = function() {
     document.documentElement.setAttribute('eager-lead-line-show', 'true');
@@ -127,6 +132,10 @@
   htmlStyle = document.createElement('style');
   lastElHeight = 0;
   setHTMLStyle = function() {
+    if (!document.body) {
+      return;
+    }
+
     var elHeight = el.clientHeight;
     if (lastElHeight !== elHeight) {
       htmlStyle.innerHTML = '' +
@@ -139,9 +148,11 @@
     lastElHeight = elHeight;
   };
   setHTMLStyle();
-  document.body.appendChild(htmlStyle);
   window.addEventListener('resize', setHTMLStyle);
 
-  // iOS :hover CSS hack
-  el.addEventListener('touchstart', function(){}, false);
+  document.addEventListener('DOMContentLoaded', function(){
+    document.body.appendChild(colorStyle);
+    document.body.appendChild(el);
+    document.body.appendChild(htmlStyle);
+  });
 })();

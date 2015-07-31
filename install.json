@@ -4,9 +4,7 @@
       {
         "type": "style",
         "src": "eager-lead-line.css"
-      }
-    ],
-    "body": [
+      },
       {
         "type": "script",
         "src": "eager-lead-line.js"
