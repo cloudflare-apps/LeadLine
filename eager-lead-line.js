@@ -110,14 +110,7 @@
   document.body.appendChild(el);
 
   show = function() {
-    var input;
-
     document.documentElement.setAttribute('eager-lead-line-show', 'true');
-
-    input = el.querySelector('input.eager-lead-line-input');
-    if (input) {
-      input.focus();
-    }
   };
   show();
 
