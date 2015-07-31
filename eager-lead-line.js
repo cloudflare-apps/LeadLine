@@ -3,12 +3,14 @@
     return
   }
 
-  var options, optionsString, colorStyle, htmlStyle, el, lastElHeight, show, hide, setHTMLStyle;
+  var options, isPreview, optionsString, colorStyle, htmlStyle, el, lastElHeight, show, hide, setHTMLStyle;
 
   options = INSTALL_OPTIONS;
 
+  isPreview = window.Eager && window.Eager.installs && window.Eager.installs.preview && window.Eager.installs.preview.appId === 'bdVPVrU8-ZKH';
+
   optionsString = JSON.stringify(options);
-  if (localStorage[optionsString]) {
+  if (!isPreview && localStorage[optionsString]) {
     return;
   }
 
