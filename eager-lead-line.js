@@ -69,6 +69,8 @@
       if (isPreview) {
         form.parentNode.removeChild(form);
         el.querySelector('.eager-lead-line-text').innerHTML = '(Form submissions are simulated during the Eager preview.)';
+        document.documentElement.setAttribute('eager-lead-line-goal', 'announcement');
+        setHTMLStyle();
         return;
       }
 
