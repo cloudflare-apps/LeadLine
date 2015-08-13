@@ -6,18 +6,6 @@
   </style>
   <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width, minimal-ui"/>
   <link rel="stylesheet" href="eager-lead-line.css">
-</head>
-
-<body style="">
-  <header>Page’s existing header</header>
-  <section>
-    <p>
-      This is a paragraph of text within the page’s content.
-    </p>
-    <p>
-      This is a paragraph of text within the page’s content.
-    </p>
-  </section>
   <script>
     INSTALL_OPTIONS = {
       "goal": "cta", // cta / signup / announcement
@@ -31,11 +19,18 @@
       "announcementText": "Sale! Everything is 75% off this entire week.",
       "color": "#0099ff"
     };
-
-    setTimeout(function(){
-      script = document.createElement('script');
-      document.body.appendChild(script);
-      script.src = 'eager-lead-line.js';
-    }, 1000);
   </script>
+  <script src="eager-lead-line.js"></script>
+</head>
+
+<body style="">
+  <header>Page’s existing header</header>
+  <section>
+    <p>
+      This is a paragraph of text within the page’s content.
+    </p>
+    <p>
+      This is a paragraph of text within the page’s content.
+    </p>
+  </section>
 </body>

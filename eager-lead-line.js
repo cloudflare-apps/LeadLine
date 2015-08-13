@@ -149,12 +149,12 @@
     }
     lastElHeight = elHeight;
   };
-  setHTMLStyle();
   window.addEventListener('resize', setHTMLStyle);
 
   document.addEventListener('DOMContentLoaded', function(){
     document.body.appendChild(colorStyle);
     document.body.appendChild(el);
     document.body.appendChild(htmlStyle);
+    setHTMLStyle();
   });
 })();
