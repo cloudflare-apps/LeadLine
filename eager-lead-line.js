@@ -156,5 +156,8 @@
     document.body.appendChild(el);
     document.body.appendChild(htmlStyle);
     setHTMLStyle();
+    setTimeout(function(){
+      setHTMLStyle();
+    }, 0);
   });
 })();
