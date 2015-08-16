@@ -198,8 +198,8 @@
       display: inline !important
     }
 
-    .eager-lead-line-button {
-      position: relative;
+    eager-lead-line button.eager-lead-line-button {
+      position: relative !important;
       display: inline-block !important;
       vertical-align: baseline !important;
       max-width: 100% !important;
@@ -208,9 +208,10 @@
       background: #fff !important;
       padding: .65em 1.6em .6em .9em !important;
       height: auto !important;
+      border: 0 !important;
       border-radius: .1875em;
-      font-weight: bold;
-      text-transform: uppercase;
+      font-weight: bold !important;
+      text-transform: uppercase !important;
       letter-spacing: .08em;
       text-indent: .08em;
       font-size: .9em !important;
