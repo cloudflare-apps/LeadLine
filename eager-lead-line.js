@@ -142,8 +142,7 @@
     if (lastElHeight !== elHeight) {
       htmlStyle.innerHTML = '' +
         'html {' +
-          '-webkit-transform: translate3d(0, ' + elHeight + 'px, 0) !important;' +
-          'transform: translate3d(0, ' + elHeight + 'px, 0) !important' +
+          'margin-top: ' + elHeight + 'px !important' +
         '}' +
       '';
     }
