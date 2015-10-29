@@ -1,3 +1,5 @@
+import {submit} from 'email-utils/utils.js';
+
 (function(){
   if (!window.addEventListener || !document.documentElement.setAttribute || !document.querySelector || !document.documentElement.classList || !document.documentElement.classList.add || !window.localStorage) {
     return
@@ -6,8 +8,7 @@
   var options, isPreview, optionsString, colorStyle, htmlStyle, el, lastElHeight, show, hide, setHTMLStyle;
 
   options = INSTALL_OPTIONS;
-
-  isPreview = window.Eager && window.Eager.installs && window.Eager.installs.preview && window.Eager.installs.preview.appId === 'bdVPVrU8-ZKH';
+  isPreview = INSTALL_ID == 'preview';
 
   optionsString = JSON.stringify(options);
   if (!isPreview && localStorage[optionsString]) {
@@ -59,12 +60,10 @@
     el.querySelector('form').addEventListener('submit', function(event){
       event.preventDefault();
 
-      var form, button, url, xhr, callback, params;
+      var form, button, email, callback;
 
       form = el.querySelector('form');
       button = el.querySelector('button[type="submit"]');
-      url = form.action;
-      xhr = new XMLHttpRequest();
 
       if (isPreview) {
         form.parentNode.removeChild(form);
@@ -74,24 +73,22 @@
         return;
       }
 
-      callback = function(xhr) {
-        var jsonResponse, message;
+      callback = function(ok) {
+        var message;
 
         button.removeAttribute('disabled');
 
-        if (xhr && xhr.target && xhr.target.status === 200) {
+        if (ok){
           form.parentNode.removeChild(form);
           document.documentElement.setAttribute('eager-lead-line-goal', 'announcement');
           setHTMLStyle();
-          message = options.signupSuccessText;
-          try {
-            if (xhr.target.response) {
-              jsonResponse = JSON.parse(xhr.target.response);
-              if (jsonResponse && jsonResponse.success === 'confirmation email sent') {
-                message = 'Formspree has sent an email to ' + options.signupEmail + ' for verification.';
-              }
-            }
-          } catch (err) {}
+
+          if (typeof ok == 'string'){
+            message = ok;
+          } else {
+            message = options.signupSuccessText;
+          }
+
           setTimeout(hide, 3000);
         } else {
           message = 'Whoops, something didn’t work. Please try again:';
@@ -101,18 +98,11 @@
         setHTMLStyle();
       };
 
-      params = 'email=' + encodeURIComponent(el.querySelector('input[type="email"]').value);
+      email = el.querySelector('input[type="email"]').value;
 
-      if (!url) {
-        return;
-      }
+      submit(options, email, callback);
 
       button.setAttribute('disabled', 'disabled');
-      xhr.open('POST', url);
-      xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-      xhr.setRequestHeader('Accept', 'application/json');
-      xhr.onload = callback.bind(xhr);
-      xhr.send(params);
     });
   }
 

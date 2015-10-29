@@ -1,0 +1,21 @@
+{
+  "name": "LeadLine",
+  "version": "1.0.0",
+  "description": "",
+  "main": "eager-lead-line.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/EagerIO/LeadBox.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EagerIO/LeadBox/issues"
+  },
+  "homepage": "https://github.com/EagerIO/LeadBox",
+  "private": true,
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-es6-module-transpiler": "^0.2.2"
+  }
+}

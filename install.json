@@ -7,7 +7,7 @@
       },
       {
         "type": "script",
-        "src": "eager-lead-line.js"
+        "src": "build/eager-lead-line.js"
       }
     ]
   },
@@ -25,7 +25,7 @@
         ],
         "enumNames": {
           "cta": "Drive traffic<span class=\"help-text\">Show a message and a juicy button your visitors will want to click.</span>",
-          "signup": "Collect email addresses<span class=\"help-text\">Show a message and an input for visitors to enter their email. <small>Powered by <a href=\"http://formspree.io\" target=\"_blank\" class=\"with-inherited-color\"><strong>Formspree</strong></a>.</small></span>",
+          "signup": "Collect email addresses<span class=\"help-text\">Show a message and an input for visitors to enter their email.</span>",
           "announcement": "Make an announcement<span class=\"help-text\">Just display a simple message.</span>"
         },
         "default": "cta"
@@ -61,19 +61,64 @@
         "default": "http://eager.io"
       },
 
-
-      "signupEmail": {
+      "signupDestination": {
         "order": 5,
+        "title": "What should we do with the emails we collect?",
+        "type": "string",
+        "format": "radios",
+        "enum": [
+          "email",
+          "service"
+        ],
+        "enumNames": {
+          "email": "Send me an email with the collected email address.<span class=\"help-text\"><small>Powered by <a href=\"http://formspree.io\" target=\"_blank\" class=\"with-inherited-color\"><strong>Formspree</strong></a></small></span>",
+          "service": "Add them as contacts to the mailing list service of my choice.<span class=\"help-text\"><small>Currently, <a href=\"http://www.constantcontact.com\" target=\"_blank\" class=\"with-inherited-color\"><strong>Constant Contact</strong></a> and <a href=\"http://mailchimp.com\" target=\"_blank\" class=\"with-inherited-color\"><strong>Mailchimp</strong></a> are supported.</small></span>"
+        }
+      },
+      "signupEmail": {
+        "order": 6,
         "showIf": {
-          "goal": "signup"
+          "goal": "signup",
+          "signupDestination": "email"
         },
         "title": "Email address to send signups to",
         "description": "<strong>Required</strong>; e.g. <em>your@email.com</em>",
         "type": "string",
         "default": ""
       },
+      "account": {
+        "order": 7,
+        "title": "Mailing list service",
+        "description": "Select the mailing list service which you would like to send subscriptions to.",
+        "type": "object",
+        "format": "account",
+        "services": ["mailchimp", "constant-contact"],
+        "showIf": {
+          "goal": "signup",
+          "signupDestination": "service"
+        }
+      },
+      "list": {
+        "order": 8,
+        "title": "List",
+        "description": "Select the list in your account which email submissions should be added to",
+        "type": "string",
+        "default": "",
+        "enum": [""],
+        "enumNames": {
+          "": "Loading lists..."
+        },
+        "showIf": {
+          "goal": "signup",
+          "signupDestination": "service",
+          "account.service": {
+            "op": "!=",
+            "value": null
+          }
+        }
+      },
       "signupText": {
-        "order": 6,
+        "order": 9,
         "showIf": {
           "goal": "signup"
         },
@@ -83,7 +128,7 @@
         "default": "Join our mailing list to be the first to know what we’re up to!"
       },
       "signupButtonText": {
-        "order": 7,
+        "order": 10,
         "showIf": {
           "goal": "signup"
         },
@@ -92,7 +137,7 @@
         "default": "Sign up"
       },
       "signupSuccessText": {
-        "order": 8,
+        "order": 11,
         "showIf": {
           "goal": "signup"
         },
@@ -104,7 +149,7 @@
 
 
       "announcementText": {
-        "order": 9,
+        "order": 12,
         "showIf": {
           "goal": "announcement"
         },
@@ -116,12 +161,40 @@
 
 
       "color": {
-        "order": 10,
+        "order": 13,
         "title": "Accent color",
         "type": "string",
         "format": "color",
         "default": "#0099ff"
       }
     }
-  }
+  },
+  "hooks": [
+    {
+      "endpoint": "http://provisioner.eager.io/{{ install.options.account.service }}/hook",
+      "events": ["option-change:account", "preview"],
+      "block": true,
+      "if": "install.options.signupDestination == 'service' && install.options.account && install.options.account.service",
+      "authenticate": ["account"],
+      "failure": {
+        "action": "notify",
+        "message": "There was an error communicating with the mail service."
+      }
+    },
+    {
+      "endpoint": "http://provisioner.eager.io/constant-contact/hook",
+      "events": ["option-change:list"],
+      "block": true,
+      "if": "install.options.signupDestination == 'service' && install.options.account && install.options.account.service == 'constant-contact'",
+      "authenticate": ["account"],
+      "failure": {
+        "action": "notify",
+        "message": "There was an error communicating with Constant Contact."
+      }
+    },
+    {
+      "events": ["account-logout"],
+      "action": "reset-schema"
+    }
+  ]
 }
