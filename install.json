@@ -11,6 +11,14 @@
       }
     ]
   },
+  "preview": {
+    "handlers": [
+      {
+        "options": ["*"],
+        "execute": "EagerLeadLine.setOptions(INSTALL_OPTIONS); EagerLeadLine.show();"
+      }
+    ]
+  },
   "options": {
     "properties": {
       "goal": {

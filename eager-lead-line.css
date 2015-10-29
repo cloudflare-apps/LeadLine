@@ -323,3 +323,7 @@
       a.eager-lead-line-branding-link:hover {
         opacity: .8
       }
+
+html[eager-lead-line-goal!="signup"] .eager-lead-line-content form {
+  display: none
+}
