@@ -102,7 +102,7 @@
       isPreview = INSTALL_ID == 'preview';
 
       optionsString = JSON.stringify(options);
-      if (!isPreview && localStorage[optionsString]) {
+      if (!isPreview && localStorage.leadLineShownWithOptions === optionsString) {
         return;
       }
 
@@ -140,7 +140,7 @@
           '<div class="eager-lead-line-content">' +
             '<div class="eager-lead-line-text"></div>' +
             (options.goal === 'announcement' ? '' :
-            '<' + (options.goal === 'signup' ? 'form' : 'div') + (options.goal === 'signup' && options.signupEmail ? ' action="//formspree.io/' + options.signupEmail + '"' : '') + ' class="eager-lead-line-form">' +
+            '<' + (options.goal === 'signup' ? 'form' : 'div') + ' class="eager-lead-line-form">' +
               (options.goal !== 'signup' ? '' :
               '<input name="email" class="eager-lead-line-input" type="email" placeholder="Email address" spellcheck="false" required>') +
               (options.goal === 'cta' ?
@@ -192,7 +192,6 @@
         button = el.querySelector('button[type="submit"]');
 
         if (isPreview) {
-          form.parentNode.removeChild(form);
           el.querySelector('.eager-lead-line-text').innerHTML = options.signupSuccessText + ' (Form submissions are simulated during the Eager preview.)';
           document.documentElement.setAttribute('eager-lead-line-goal', 'announcement');
           setHTMLStyle();
@@ -205,7 +204,6 @@
           button.removeAttribute('disabled');
 
           if (ok){
-            form.parentNode.removeChild(form);
             document.documentElement.setAttribute('eager-lead-line-goal', 'announcement');
             setHTMLStyle();
 
@@ -226,6 +224,8 @@
 
         email = el.querySelector('input[type="email"]').value;
 
+        options.destination = options.signupDestination;
+        options.email = options.signupEmail;
         email$utils$utils$$submit(options, email, callback);
 
         button.setAttribute('disabled', 'disabled');
@@ -244,7 +244,7 @@
       show();
 
       hide = function() {
-        localStorage[optionsString] = true;
+        localStorage.leadLineShownWithOptions = optionsString;
         document.documentElement.setAttribute('eager-lead-line-show', 'false');
         document.head.removeChild(htmlStyle);
       };
