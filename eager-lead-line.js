@@ -11,7 +11,7 @@ import {submit} from 'email-utils/utils.js';
   isPreview = INSTALL_ID == 'preview';
 
   optionsString = JSON.stringify(options);
-  if (!isPreview && localStorage[optionsString]) {
+  if (!isPreview && localStorage.leadLineShownWithOptions === optionsString) {
     return;
   }
 
@@ -151,7 +151,7 @@ import {submit} from 'email-utils/utils.js';
   show();
 
   hide = function() {
-    localStorage[optionsString] = true;
+    localStorage.leadLineShownWithOptions = optionsString;
     document.documentElement.setAttribute('eager-lead-line-show', 'false');
     document.head.removeChild(htmlStyle);
   };
