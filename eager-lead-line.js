@@ -133,6 +133,8 @@ import {submit} from 'email-utils/utils.js';
 
     email = el.querySelector('input[type="email"]').value;
 
+    options.destination = options.signupDestination;
+    options.email = options.signupEmail;
     submit(options, email, callback);
 
     button.setAttribute('disabled', 'disabled');
