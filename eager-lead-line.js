@@ -122,6 +122,7 @@ import {submit} from 'email-utils/utils.js';
           message = options.signupSuccessText;
         }
 
+        form.parentNode.removeChild(form);
         setTimeout(hide, 3000);
       } else {
         message = 'Whoops, something didn’t work. Please try again:';
