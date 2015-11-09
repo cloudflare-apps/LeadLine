@@ -74,6 +74,9 @@
         "title": "What should we do with the emails we collect?",
         "type": "string",
         "format": "radios",
+        "showIf": {
+          "goal": "signup"
+        },
         "enum": [
           "email",
           "service"
