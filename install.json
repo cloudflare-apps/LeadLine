@@ -138,8 +138,17 @@
         "format": "textarea",
         "default": "Join our mailing list to be the first to know what we’re up to!"
       },
-      "signupButtonText": {
+      "signupInputPlaceholder": {
         "order": 10,
+        "showIf": {
+          "goal": "signup"
+        },
+        "title": "Input placeholder text",
+        "type": "string",
+        "default": "Email address"
+      },
+      "signupButtonText": {
+        "order": 11,
         "showIf": {
           "goal": "signup"
         },
@@ -148,7 +157,7 @@
         "default": "Sign up"
       },
       "signupSuccessText": {
-        "order": 11,
+        "order": 12,
         "showIf": {
           "goal": "signup"
         },
@@ -160,7 +169,7 @@
 
 
       "announcementText": {
-        "order": 12,
+        "order": 13,
         "showIf": {
           "goal": "announcement"
         },
@@ -172,7 +181,7 @@
 
 
       "color": {
-        "order": 13,
+        "order": 14,
         "title": "Accent color",
         "type": "string",
         "format": "color",
