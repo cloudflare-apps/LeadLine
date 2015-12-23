@@ -154,7 +154,9 @@ import {submit} from 'email-utils/utils.js';
   show();
 
   hide = function() {
-    localStorage.leadLineShownWithOptions = optionsString;
+    try {
+      localStorage.leadLineShownWithOptions = optionsString;
+    } catch (e) {}
     document.documentElement.setAttribute('eager-lead-line-show', 'false');
     document.head.removeChild(htmlStyle);
   };
