@@ -154,11 +154,11 @@ import {submit} from 'email-utils/utils.js';
   show();
 
   hide = function() {
+    document.documentElement.setAttribute('eager-lead-line-show', 'false');
+    document.head.removeChild(htmlStyle);
     try {
       localStorage.leadLineShownWithOptions = optionsString;
     } catch (e) {}
-    document.documentElement.setAttribute('eager-lead-line-show', 'false');
-    document.head.removeChild(htmlStyle);
   };
 
   lastElHeight = 0;
