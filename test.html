@@ -2,10 +2,12 @@
   <meta charset="utf-8">
   <style>
     body { font-family: Arial; padding-top: 10px; margin: 20px }
-    header, chat { background: #000; padding: 1em; text-align: center; color: #fff }
-    header { position: fixed; top: 0; left: 0; right: 0 }
-    chat { position: fixed; bottom: 0; right: 100px; background: #000; padding: 1em; width: 200px; border-radius: 5px 5px 0 0 }
-    section { padding-top: 50px }
+    header, subheader, chat { display: block; background: #000; height: 1em; padding: 1em; text-align: center; color: #fff }
+    header { position: fixed; top: 0; left: 0; right: 0; z-index: 1 }
+    subheader { position: sticky; top: 3em; background: #ccc; color: #000; margin: 1em 0; z-index: 2 }
+    subheader:first-child { margin-top: 0 }
+    chat { position: fixed; bottom: 0; right: 100px; background: #000; padding: 1em; width: 200px; border-radius: 5px 5px 0 0; z-index: 3 }
+    main { padding-top: 20px }
   </style>
   <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width, minimal-ui"/>
   <link rel="stylesheet" href="eager-lead-line.css">
@@ -29,76 +31,212 @@
 </head>
 
 <body>
-  <header>Page’s existing header</header>
+  <header>Header</header>
+  <sidebar>Sidebar</sidebar>
   <chat>Chat</chat>
-  <section>
-    <ol>
-      <li>This is a paragraph of text within the page’s content.</li>
-      <li>This is a paragraph of text within the page’s content.</li>
-      <li>This is a paragraph of text within the page’s content.</li>
-      <li>This is a paragraph of text within the page’s content.</li>
-      <li>This is a paragraph of text within the page’s content.</li>
-      <li>This is a paragraph of text within the page’s content.</li>
-      <li>This is a paragraph of text within the page’s content.</li>
-      <li>This is a paragraph of text within the page’s content.</li>
-      <li>This is a paragraph of text within the page’s content.</li>
-      <li>This is a paragraph of text within the page’s content.</li>
-      <li>This is a paragraph of text within the page’s content.</li>
-      <li>This is a paragraph of text within the page’s content.</li>
-      <li>This is a paragraph of text within the page’s content.</li>
-      <li>This is a paragraph of text within the page’s content.</li>
-      <li>This is a paragraph of text within the page’s content.</li>
-      <li>This is a paragraph of text within the page’s content.</li>
-      <li>This is a paragraph of text within the page’s content.</li>
-      <li>This is a paragraph of text within the page’s content.</li>
-      <li>This is a paragraph of text within the page’s content.</li>
-      <li>This is a paragraph of text within the page’s content.</li>
-      <li>This is a paragraph of text within the page’s content.</li>
-      <li>This is a paragraph of text within the page’s content.</li>
-      <li>This is a paragraph of text within the page’s content.</li>
-      <li>This is a paragraph of text within the page’s content.</li>
-      <li>This is a paragraph of text within the page’s content.</li>
-      <li>This is a paragraph of text within the page’s content.</li>
-      <li>This is a paragraph of text within the page’s content.</li>
-      <li>This is a paragraph of text within the page’s content.</li>
-      <li>This is a paragraph of text within the page’s content.</li>
-      <li>This is a paragraph of text within the page’s content.</li>
-      <li>This is a paragraph of text within the page’s content.</li>
-      <li>This is a paragraph of text within the page’s content.</li>
-      <li>This is a paragraph of text within the page’s content.</li>
-      <li>This is a paragraph of text within the page’s content.</li>
-      <li>This is a paragraph of text within the page’s content.</li>
-      <li>This is a paragraph of text within the page’s content.</li>
-      <li>This is a paragraph of text within the page’s content.</li>
-      <li>This is a paragraph of text within the page’s content.</li>
-      <li>This is a paragraph of text within the page’s content.</li>
-      <li>This is a paragraph of text within the page’s content.</li>
-      <li>This is a paragraph of text within the page’s content.</li>
-      <li>This is a paragraph of text within the page’s content.</li>
-      <li>This is a paragraph of text within the page’s content.</li>
-      <li>This is a paragraph of text within the page’s content.</li>
-      <li>This is a paragraph of text within the page’s content.</li>
-      <li>This is a paragraph of text within the page’s content.</li>
-      <li>This is a paragraph of text within the page’s content.</li>
-      <li>This is a paragraph of text within the page’s content.</li>
-      <li>This is a paragraph of text within the page’s content.</li>
-      <li>This is a paragraph of text within the page’s content.</li>
-      <li>This is a paragraph of text within the page’s content.</li>
-      <li>This is a paragraph of text within the page’s content.</li>
-      <li>This is a paragraph of text within the page’s content.</li>
-      <li>This is a paragraph of text within the page’s content.</li>
-      <li>This is a paragraph of text within the page’s content.</li>
-      <li>This is a paragraph of text within the page’s content.</li>
-      <li>This is a paragraph of text within the page’s content.</li>
-      <li>This is a paragraph of text within the page’s content.</li>
-      <li>This is a paragraph of text within the page’s content.</li>
-      <li>This is a paragraph of text within the page’s content.</li>
-      <li>This is a paragraph of text within the page’s content.</li>
-      <li>This is a paragraph of text within the page’s content.</li>
-      <li>This is a paragraph of text within the page’s content.</li>
-      <li>This is a paragraph of text within the page’s content.</li>
-      <li>This is a paragraph of text within the page’s content.</li>
-      <li>This is a paragraph of text within the page’s content.</li>
-    </ol>
-  </section>
+  <main>
+    <subheader>Subheader 1</subheader>
+    <section>
+      <ol>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+    </section>
+    <subheader>Subheader 2</subheader>
+    <section>
+      <ol>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+    </section>
+    <subheader>Subheader 3</subheader>
+    <section>
+      <ol>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+    </section>
+    <subheader>Subheader 4</subheader>
+    <section>
+      <ol>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+    </section>
+    <subheader>Subheader 5</subheader>
+    <section>
+      <ol>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+    </section>
+    <subheader>Subheader 6</subheader>
+    <section>
+      <ol>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+    </section>
+    <subheader>Subheader 7</subheader>
+    <section>
+      <ol>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+        <li>This is an ordered list item.</li>
+    </section>
+  </main>
 </body>

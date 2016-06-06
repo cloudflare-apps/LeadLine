@@ -101,7 +101,7 @@
 
       var optionsString = JSON.stringify(options);
       if (!isPreview && localStorage.leadLineShownWithOptions === optionsString) {
-        return;
+        //return;
       }
 
       var setOptions = function(opts) {
@@ -239,6 +239,10 @@
       };
       show();
 
+      var isShown = function() {
+        return document.documentElement.getAttribute('eager-lead-line-show') === 'true';
+      };
+
       var hide = function() {
         document.documentElement.setAttribute('eager-lead-line-show', 'false');
         document.head.removeChild(htmlStyle);
@@ -253,14 +257,17 @@
         setFixedElementStyles();
       };
 
+      var documentElementOriginallyPositionStatic = getComputedStyle(document.documentElement).position === 'static';
       var setHTMlStyle  = function() {
         if (!document.body) return;
 
         var style = '';
-        if (document.documentElement.getAttribute('eager-lead-line-show') === 'true') {
+        if (documentElementOriginallyPositionStatic && isShown()) {
+          var positionStyle = '';
           style = '' +
             'html {' +
-              'margin-top: ' + el.clientHeight + 'px' +
+              'position: relative;' +
+              'top: ' + el.clientHeight + 'px' +
             '}' +
           '';
         }
@@ -272,25 +279,38 @@
           if (!node.getAttribute('style')) return;
           node.setAttribute('style', node.getAttribute('style').replace(/top[^;]+;?/g, ''));
         };
+
+        // Cache this to minimize potential repaints
         var elHeight = el.clientHeight;
-        var allNodes = document.querySelectorAll('*:not(.eager-lead-line)');
+
+        // Find fixed position nodes to adjust
+        var allNodes = document.querySelectorAll('*:not(.eager-lead-line):not([data-eager-lead-line-adjusted-fixed-element-original-top])');
         Array.prototype.forEach.call(allNodes, function(node) {
-          var isFixed = getComputedStyle(node).position === 'fixed';
-          var onBottom = getComputedStyle(node).bottom === '0px' || node.getBoundingClientRect().bottom === window.innerHeight;
-          if (isFixed && !onBottom) {
-            var top = node.getBoundingClientRect().top;
-            var styleTop = parseInt(getComputedStyle(node).top, 10);
-            if (top === styleTop && top <= elHeight) {
+          var computedStyle = getComputedStyle(node);
+          var boundingClientRect = node.getBoundingClientRect();
+
+          var isSticky = computedStyle.position === 'sticky';
+          var isFixed = computedStyle.position === 'fixed';
+          var isBottomFixed = computedStyle.bottom === '0px' && boundingClientRect.bottom === window.innerHeight && boundingClientRect.top >= elHeight;
+
+          if ((isFixed || isSticky) && !isBottomFixed) {
+            var top = boundingClientRect.top;
+            var styleTop = parseInt(computedStyle.top, 10);
+            if (isSticky || (top === styleTop && top <= elHeight)) {
               node.setAttribute('data-eager-lead-line-adjusted-fixed-element-original-top', top);
             }
           }
         });
 
+        // Adjust them
         var adjustedNodes = document.querySelectorAll('[data-eager-lead-line-adjusted-fixed-element-original-top]');
         Array.prototype.forEach.call(adjustedNodes, function(node) {
           removeTopStyle(node);
-          if (document.documentElement.getAttribute('eager-lead-line-show') === 'true') {
-            node.style.top = (parseInt(getComputedStyle(node).top, 10) || 0) + elHeight + 'px';
+          var computedStyle = getComputedStyle(node);
+          var isFixedOrSticky = computedStyle.position === 'fixed' || computedStyle.position === 'sticky';
+          if (isFixedOrSticky && isShown() && elHeight > 0) {
+            var newTop = (parseInt(computedStyle.top, 10) || 0) + elHeight;
+            node.style.top = newTop + 'px';
           }
         });
       };
