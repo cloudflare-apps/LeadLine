@@ -1,6 +1,6 @@
 {
   "name": "LeadLine",
-  "version": "3.0.0-rc1",
+  "version": "3.0.0",
   "description": "",
   "main": "eager-lead-line.js",
   "repository": {
