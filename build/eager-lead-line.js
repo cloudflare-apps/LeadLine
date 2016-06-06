@@ -96,32 +96,33 @@
         return
       }
 
-      var options, isPreview, optionsString, colorStyle, htmlStyle, el, lastElHeight, show, hide, setHTMLStyle, setOptions, update, updateColors, updateCopy;
+      var options = INSTALL_OPTIONS;
+      var isPreview = INSTALL_ID == 'preview';
 
-      options = INSTALL_OPTIONS;
-      isPreview = INSTALL_ID == 'preview';
-
-      optionsString = JSON.stringify(options);
+      var optionsString = JSON.stringify(options);
       if (!isPreview && localStorage.leadLineShownWithOptions === optionsString) {
         return;
       }
 
-      setOptions = function(opts) {
+      var setOptions = function(opts) {
         options = opts;
 
         update();
       };
 
-      update = function() {
+      var update = function() {
         document.documentElement.setAttribute('eager-lead-line-goal', options.goal);
 
         updateColors();
         updateCopy();
 
-        setHTMLStyle();
+        setPageStyles();
       };
 
-      updateColors = function() {
+      var colorStyle = document.createElement('style');
+      document.head.appendChild(colorStyle);
+
+      var updateColors = function() {
         colorStyle.innerHTML = '' +
           '.eager-lead-line {' +
             'background: ' + options.color + ' !important' +
@@ -132,9 +133,11 @@
         '';
       };
 
-      updateCopy = function() {
-        var textEl, buttonEl, linkEl;
+      var el = document.createElement('eager-lead-line');
+      el.addEventListener('touchstart', function(){}, false); // iOS :hover CSS hack
+      el.className = 'eager-lead-line';
 
+      var updateCopy = function() {
         el.innerHTML = '' +
           '<div class="eager-lead-line-close-button"></div>' +
           '<div class="eager-lead-line-content">' +
@@ -155,16 +158,17 @@
           '</div>' +
         '';
 
-        textEl = el.querySelector('.eager-lead-line-text')
+        var textEl = el.querySelector('.eager-lead-line-text')
         textEl.innerHTML = options[options.goal + 'Text'];
 
-        buttonEl = el.querySelector('.eager-lead-line-button')
+        var buttonEl = el.querySelector('.eager-lead-line-button')
         if (options.goal !== 'announcement') {
           buttonEl.innerHTML = options[options.goal + 'ButtonText'] || '&nbsp;';
         } else if (buttonEl) {
           buttonEl.innerHTML = '';
         }
 
+        var linkEl;
         if (options.goal === 'cta') {
           linkEl = el.querySelector('.eager-lead-line-link')
           linkEl.setAttribute('href', options.ctaLinkAddress);
@@ -176,36 +180,27 @@
         }
       }
 
-      colorStyle = document.createElement('style');
-      document.head.appendChild(colorStyle);
-
-      el = document.createElement('eager-lead-line');
-      el.addEventListener('touchstart', function(){}, false); // iOS :hover CSS hack
-      el.className = 'eager-lead-line';
-
       el.addEventListener('submit', function(event) {
         event.preventDefault();
 
-        var form, button, email, callback;
-
-        form = el.querySelector('form');
-        button = el.querySelector('button[type="submit"]');
+        var form = el.querySelector('form');
+        var button = el.querySelector('button[type="submit"]');
 
         if (isPreview) {
           el.querySelector('.eager-lead-line-text').innerHTML = options.signupSuccessText + ' (Form submissions are simulated during the Eager preview.)';
           document.documentElement.setAttribute('eager-lead-line-goal', 'announcement');
-          setHTMLStyle();
+          setPageStyles();
           return;
         }
 
-        callback = function(ok) {
+        var callback = function(ok) {
           var message;
 
           button.removeAttribute('disabled');
 
           if (ok){
             document.documentElement.setAttribute('eager-lead-line-goal', 'announcement');
-            setHTMLStyle();
+            setPageStyles();
 
             if (typeof ok == 'string'){
               message = ok;
@@ -220,10 +215,10 @@
           }
 
           el.querySelector('.eager-lead-line-text').innerHTML = message;
-          setHTMLStyle();
+          setPageStyles();
         };
 
-        email = el.querySelector('input[type="email"]').value;
+        var email = el.querySelector('input[type="email"]').value;
 
         options.destination = options.signupDestination;
         options.email = options.signupEmail;
@@ -232,10 +227,7 @@
         button.setAttribute('disabled', 'disabled');
       });
 
-      htmlStyle = document.createElement('style');
-      document.head.appendChild(htmlStyle);
-
-      show = function() {
+      var show = function() {
         document.documentElement.setAttribute('eager-lead-line-show', 'true');
 
         if (!htmlStyle.parentNode){
@@ -244,39 +236,73 @@
       };
       show();
 
-      hide = function() {
-        localStorage.leadLineShownWithOptions = optionsString;
+      var hide = function() {
         document.documentElement.setAttribute('eager-lead-line-show', 'false');
         document.head.removeChild(htmlStyle);
+        try {
+          localStorage.leadLineShownWithOptions = optionsString;
+        } catch (e) {}
+        setPageStyles();
       };
 
-      lastElHeight = 0;
-      setHTMLStyle = function() {
-        var elHeight;
+      var setPageStyles = function() {
+        setHTMlStyle();
+        setFixedElementStyles();
+      };
 
-        if (!document.body) {
-          return;
-        }
+      var htmlStyle = document.createElement('style');
+      document.head.appendChild(htmlStyle);
 
-        elHeight = el.clientHeight;
-        if (lastElHeight !== elHeight) {
-          htmlStyle.innerHTML = '' +
+      var setHTMlStyle  = function() {
+        if (!document.body) return;
+
+        var style = '';
+        if (document.documentElement.getAttribute('eager-lead-line-show') === 'true') {
+          style = '' +
             'html {' +
-              '-webkit-transform: translate3d(0, ' + elHeight + 'px, 0) !important;' +
-              'transform: translate3d(0, ' + elHeight + 'px, 0) !important' +
+              'margin-top: ' + el.clientHeight + 'px' +
             '}' +
           '';
         }
-        lastElHeight = elHeight;
+        htmlStyle.innerHTML = style;
       };
-      window.addEventListener('resize', setHTMLStyle);
+
+      var setFixedElementStyles = function() {
+        var removeTopStyle = function(node) {
+          if (!node.getAttribute('style')) return;
+          node.setAttribute('style', node.getAttribute('style').replace(/top[^;]+;?/g, ''));
+        };
+        var elHeight = el.clientHeight;
+        var allNodes = document.querySelectorAll('*:not(.eager-lead-line)');
+        Array.prototype.forEach.call(allNodes, function(node) {
+          var isFixed = getComputedStyle(node).position === 'fixed';
+          var onBottom = getComputedStyle(node).bottom === '0px' || node.getBoundingClientRect().bottom === window.innerHeight;
+          if (isFixed && !onBottom) {
+            var top = node.getBoundingClientRect().top;
+            var styleTop = parseInt(getComputedStyle(node).top, 10);
+            if (top === styleTop && top <= elHeight) {
+              node.setAttribute('data-eager-lead-line-adjusted-fixed-element-original-top', top);
+            }
+          }
+        });
+
+        var adjustedNodes = document.querySelectorAll('[data-eager-lead-line-adjusted-fixed-element-original-top]');
+        Array.prototype.forEach.call(adjustedNodes, function(node) {
+          removeTopStyle(node);
+          if (document.documentElement.getAttribute('eager-lead-line-show') === 'true') {
+            node.style.top = (parseInt(getComputedStyle(node).top, 10) || 0) + elHeight + 'px';
+          }
+        });
+      };
+
+      window.addEventListener('resize', setPageStyles);
 
       document.addEventListener('DOMContentLoaded', function(){
         document.body.appendChild(el);
 
         update();
 
-        setTimeout(setHTMLStyle, 0);
+        setTimeout(setPageStyles, 0);
       });
 
       window.EagerLeadLine = {
