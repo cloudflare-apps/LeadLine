@@ -136,6 +136,9 @@ import {submit} from 'email-utils/utils.js';
     button.setAttribute('disabled', 'disabled');
   });
 
+  var htmlStyle = document.createElement('style');
+  document.head.appendChild(htmlStyle);
+
   var show = function() {
     document.documentElement.setAttribute('eager-lead-line-show', 'true');
 
@@ -158,9 +161,6 @@ import {submit} from 'email-utils/utils.js';
     setHTMlStyle();
     setFixedElementStyles();
   };
-
-  var htmlStyle = document.createElement('style');
-  document.head.appendChild(htmlStyle);
 
   var setHTMlStyle  = function() {
     if (!document.body) return;
