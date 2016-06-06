@@ -185,7 +185,8 @@ import {submit} from 'email-utils/utils.js';
     var allNodes = document.querySelectorAll('*:not(.eager-lead-line)');
     Array.prototype.forEach.call(allNodes, function(node) {
       var isFixed = getComputedStyle(node).position === 'fixed';
-      var onBottom = getComputedStyle(node).bottom === '0px' || node.getBoundingClientRect().bottom === window.innerHeight;
+      var onBottom = getComputedStyle(node).bottom === '0px' && node.getBoundingClientRect().bottom === window.innerHeight && node.getBoundingClientRect().top >= elHeight;
+
       if (isFixed && !onBottom) {
         var top = node.getBoundingClientRect().top;
         var styleTop = parseInt(getComputedStyle(node).top, 10);
