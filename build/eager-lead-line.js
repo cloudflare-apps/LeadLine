@@ -101,7 +101,7 @@
 
       var optionsString = JSON.stringify(options);
       if (!isPreview && localStorage.leadLineShownWithOptions === optionsString) {
-        //return;
+        return;
       }
 
       var setOptions = function(opts) {
