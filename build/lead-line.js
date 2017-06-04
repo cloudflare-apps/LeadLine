@@ -111,7 +111,7 @@
       };
 
       var update = function() {
-        document.documentElement.setAttribute('eager-lead-line-goal', options.goal);
+        document.documentElement.setAttribute('cfapps-lead-line-goal', options.goal);
 
         updateColors();
         updateCopy();
@@ -124,44 +124,44 @@
 
       var updateColors = function() {
         colorStyle.innerHTML = '' +
-          '.eager-lead-line {' +
+          '.cfapps-lead-line {' +
             'background: ' + options.color + ' !important' +
           '}' +
-          '.eager-lead-line .eager-lead-line-button {' +
+          '.cfapps-lead-line .cfapps-lead-line-button {' +
             'color: ' + options.color + ' !important' +
           '}' +
         '';
       };
 
-      var el = document.createElement('eager-lead-line');
+      var el = document.createElement('cfapps-lead-line');
       el.addEventListener('touchstart', function(){}, false); // iOS :hover CSS hack
-      el.className = 'eager-lead-line';
+      el.className = 'cfapps-lead-line';
 
       var updateCopy = function() {
         el.innerHTML = '' +
-          '<div class="eager-lead-line-close-button"></div>' +
-          '<div class="eager-lead-line-content">' +
-            '<div class="eager-lead-line-text"></div>' +
+          '<div class="cfapps-lead-line-close-button"></div>' +
+          '<div class="cfapps-lead-line-content">' +
+            '<div class="cfapps-lead-line-text"></div>' +
             (options.goal === 'announcement' ? '' :
-            '<' + (options.goal === 'signup' ? 'form' : 'div') + ' class="eager-lead-line-form">' +
+            '<' + (options.goal === 'signup' ? 'form' : 'div') + ' class="cfapps-lead-line-form">' +
               (options.goal !== 'signup' ? '' :
-              '<input name="email" class="eager-lead-line-input" type="email" placeholder="'+ options.signupInputPlaceholder + '" spellcheck="false" required>') +
+              '<input name="email" class="cfapps-lead-line-input" type="email" placeholder="'+ options.signupInputPlaceholder + '" spellcheck="false" required>') +
               (options.goal === 'cta' ?
-              '<a target="_blank" class="eager-lead-line-link">' : '') +
-                '<button ' + (options.goal === 'signup' ? 'type="submit" ' : '') + 'class="eager-lead-line-button"></button>' +
+              '<a target="_blank" class="cfapps-lead-line-link">' : '') +
+                '<button ' + (options.goal === 'signup' ? 'type="submit" ' : '') + 'class="cfapps-lead-line-button"></button>' +
               (options.goal === 'cta' ?
               '</a>' : '') +
             '</' + (options.goal === 'signup' ? 'form' : 'div') + '>') +
           '</div>' +
-          '<div class="eager-lead-line-branding">' +
-            '<a class="eager-lead-line-branding-link" href="https://eager.io?utm_source=eager_leads_powered_by_link" target="_blank">Powered by Eager</a>' +
+          '<div class="cfapps-lead-line-branding">' +
+            '<a class="cfapps-lead-line-branding-link" href="https://www.cloudflare.com/apps?utm_source=lead_line_powered_by_link" target="_blank">Powered by Cloudflare Apps</a>' +
           '</div>' +
         '';
 
-        var textEl = el.querySelector('.eager-lead-line-text')
+        var textEl = el.querySelector('.cfapps-lead-line-text')
         textEl.innerHTML = options[options.goal + 'Text'];
 
-        var buttonEl = el.querySelector('.eager-lead-line-button')
+        var buttonEl = el.querySelector('.cfapps-lead-line-button')
         if (options.goal !== 'announcement') {
           buttonEl.innerHTML = options[options.goal + 'ButtonText'] || '&nbsp;';
         } else if (buttonEl) {
@@ -170,11 +170,11 @@
 
         var linkEl;
         if (options.goal === 'cta') {
-          linkEl = el.querySelector('.eager-lead-line-link')
+          linkEl = el.querySelector('.cfapps-lead-line-link')
           linkEl.setAttribute('href', options.ctaLinkAddress);
         }
 
-        el.querySelector('.eager-lead-line-close-button').addEventListener('click', hide);
+        el.querySelector('.cfapps-lead-line-close-button').addEventListener('click', hide);
         if (options.goal == 'cta') {
           linkEl.addEventListener('click', hide);
         }
@@ -187,8 +187,8 @@
         var button = el.querySelector('button[type="submit"]');
 
         if (isPreview) {
-          el.querySelector('.eager-lead-line-text').innerHTML = options.signupSuccessText + ' (Form submissions are simulated during the Eager preview.)';
-          document.documentElement.setAttribute('eager-lead-line-goal', 'announcement');
+          el.querySelector('.cfapps-lead-line-text').innerHTML = options.signupSuccessText + ' (Form submissions are simulated during the Cloudflare Apps preview.)';
+          document.documentElement.setAttribute('cfapps-lead-line-goal', 'announcement');
           setPageStyles();
           return;
         }
@@ -199,7 +199,7 @@
           button.removeAttribute('disabled');
 
           if (ok){
-            document.documentElement.setAttribute('eager-lead-line-goal', 'announcement');
+            document.documentElement.setAttribute('cfapps-lead-line-goal', 'announcement');
             setPageStyles();
 
             if (typeof ok == 'string'){
@@ -214,7 +214,7 @@
             message = 'Whoops, something didn’t work. Please try again:';
           }
 
-          el.querySelector('.eager-lead-line-text').innerHTML = message;
+          el.querySelector('.cfapps-lead-line-text').innerHTML = message;
           setPageStyles();
         };
 
@@ -231,7 +231,7 @@
       document.head.appendChild(htmlStyle);
 
       var show = function() {
-        document.documentElement.setAttribute('eager-lead-line-show', 'true');
+        document.documentElement.setAttribute('cfapps-lead-line-show', 'true');
 
         if (!htmlStyle.parentNode){
           document.head.appendChild(htmlStyle);
@@ -240,11 +240,11 @@
       show();
 
       var isShown = function() {
-        return document.documentElement.getAttribute('eager-lead-line-show') === 'true';
+        return document.documentElement.getAttribute('cfapps-lead-line-show') === 'true';
       };
 
       var hide = function() {
-        document.documentElement.setAttribute('eager-lead-line-show', 'false');
+        document.documentElement.setAttribute('cfapps-lead-line-show', 'false');
         document.head.removeChild(htmlStyle);
         try {
           localStorage.leadLineShownWithOptions = optionsString;
@@ -284,7 +284,7 @@
         var elHeight = el.clientHeight;
 
         // Find fixed position nodes to adjust
-        var allNodes = document.querySelectorAll('*:not(.eager-lead-line):not([data-eager-lead-line-adjusted-fixed-element-original-top])');
+        var allNodes = document.querySelectorAll('*:not(.cfapps-lead-line):not([data-cfapps-lead-line-adjusted-fixed-element-original-top])');
         Array.prototype.forEach.call(allNodes, function(node) {
           var computedStyle = getComputedStyle(node);
           var boundingClientRect = node.getBoundingClientRect();
@@ -297,13 +297,13 @@
             var top = boundingClientRect.top;
             var styleTop = parseInt(computedStyle.top, 10);
             if (isSticky || (top === styleTop && top <= elHeight)) {
-              node.setAttribute('data-eager-lead-line-adjusted-fixed-element-original-top', top);
+              node.setAttribute('data-cfapps-lead-line-adjusted-fixed-element-original-top', top);
             }
           }
         });
 
         // Adjust them
-        var adjustedNodes = document.querySelectorAll('[data-eager-lead-line-adjusted-fixed-element-original-top]');
+        var adjustedNodes = document.querySelectorAll('[data-cfapps-lead-line-adjusted-fixed-element-original-top]');
         Array.prototype.forEach.call(adjustedNodes, function(node) {
           removeTopStyle(node);
           var computedStyle = getComputedStyle(node);
@@ -325,7 +325,7 @@
         setTimeout(setPageStyles, 0);
       });
 
-      window.EagerLeadLine = {
+      window.LeadLine = {
         setOptions: setOptions,
         show: show,
         hide: hide

@@ -3,11 +3,11 @@
     "head": [
       {
         "type": "style",
-        "src": "eager-lead-line.css"
+        "src": "lead-line.css"
       },
       {
         "type": "script",
-        "src": "build/eager-lead-line.js"
+        "src": "build/lead-line.js"
       }
     ]
   },
@@ -15,7 +15,7 @@
     "handlers": [
       {
         "options": ["*"],
-        "execute": "EagerLeadLine.setOptions(INSTALL_OPTIONS); EagerLeadLine.show();"
+        "execute": "LeadLine.setOptions(INSTALL_OPTIONS); LeadLine.show();"
       }
     ]
   },
@@ -66,7 +66,7 @@
         },
         "title": "URL to drive traffic to",
         "type": "string",
-        "default": "http://eager.io"
+        "default": "https://cloudflare.com/apps"
       },
 
       "signupDestination": {

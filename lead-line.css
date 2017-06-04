@@ -1,4 +1,4 @@
-.eager-lead-line {
+.cfapps-lead-line {
   font-family: inherit;
   box-sizing: border-box !important;
   -webkit-font-smoothing: antialiased;
@@ -9,23 +9,23 @@
   user-select: none
 }
 
-.eager-lead-line:before, .eager-lead-line:after, .eager-lead-line *, .eager-lead-line *:before, .eager-lead-line *:after {
+.cfapps-lead-line:before, .cfapps-lead-line:after, .cfapps-lead-line *, .cfapps-lead-line *:before, .cfapps-lead-line *:after {
   display: block !important;
   line-height: normal !important;
   box-sizing: inherit !important
 }
 
-.eager-lead-line ::-moz-selection {
+.cfapps-lead-line ::-moz-selection {
   background: rgba(0, 0, 0, .4) !important;
   color: #fff !important
 }
 
-.eager-lead-line ::selection {
+.cfapps-lead-line ::selection {
   background: rgba(0, 0, 0, .4) !important;
   color: #fff !important
 }
 
-.eager-lead-line, .eager-lead-line * {
+.cfapps-lead-line, .cfapps-lead-line * {
   font-family: inherit !important;
   font-size: inherit !important;
   text-decoration: none !important;
@@ -35,7 +35,7 @@
   padding: 0 !important
 }
 
-html > body > .eager-lead-line {
+html > body > .cfapps-lead-line {
   /*
     Specificity to combat things like this (from CNN.com as of 6/6/16):
 
@@ -65,19 +65,19 @@ html > body > .eager-lead-line {
 }
 
   @media (max-width: 40em) {
-    html > body > .eager-lead-line {
+    html > body > .cfapps-lead-line {
       text-align: left !important;
       padding: 1em 2.5em 1em .4em !important
     }
   }
 
   @media (max-width: 15em) {
-    html > body > .eager-lead-line {
+    html > body > .cfapps-lead-line {
       display: none !important
     }
   }
 
-  html[eager-lead-line-show="true"] > body > .eager-lead-line {
+  html[cfapps-lead-line-show="true"] > body > .cfapps-lead-line {
     -webkit-transform: translate3d(0, 0, 0) !important;
     transform: translate3d(0, 0, 0) !important;
     visibility: visible !important;
@@ -85,7 +85,7 @@ html > body > .eager-lead-line {
     pointer-events: all !important;
   }
 
-  .eager-lead-line-close-button {
+  .cfapps-lead-line-close-button {
     cursor: pointer;
     position: absolute;
     z-index: 18005;
@@ -96,16 +96,16 @@ html > body > .eager-lead-line {
   }
 
     @media (max-width: 40em) {
-      .eager-lead-line-close-button {
+      .cfapps-lead-line-close-button {
         width: 2.5em !important
       }
 
-      .eager-lead-line-close-button:before {
+      .cfapps-lead-line-close-button:before {
         margin-top: .25em !important
       }
     }
 
-    .eager-lead-line-close-button:before {
+    .cfapps-lead-line-close-button:before {
       position: absolute;
       font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
       content: "\00D7";
@@ -125,39 +125,39 @@ html > body > .eager-lead-line {
       pointer-events: none
     }
 
-  .eager-lead-line-close-button:hover:before {
+  .cfapps-lead-line-close-button:hover:before {
     color: rgba(0, 0, 0, .7)
   }
 
     @media (max-width: 40em) {
-      html[eager-lead-line-goal="cta"] .eager-lead-line-content,
-      html[eager-lead-line-goal="signup"] .eager-lead-line-content {
+      html[cfapps-lead-line-goal="cta"] .cfapps-lead-line-content,
+      html[cfapps-lead-line-goal="signup"] .cfapps-lead-line-content {
         margin-bottom: .5em !important
       }
     }
 
-    .eager-lead-line-text {
+    .cfapps-lead-line-text {
       display: inline-block !important;
       line-height: 1.3em !important;
       margin: 0 .6em .4em .6em !important
     }
 
-    html[eager-lead-line-goal="announcement"] .eager-lead-line-text {
+    html[cfapps-lead-line-goal="announcement"] .cfapps-lead-line-text {
       margin-top: .4em !important
     }
 
-    .eager-lead-line-form {
+    .cfapps-lead-line-form {
       display: inline-block !important;
       margin: 0 .5em !important
     }
 
     @media (max-width: 40em) {
-      .eager-lead-line-form {
+      .cfapps-lead-line-form {
         display: block !important
       }
     }
 
-    input.eager-lead-line-input {
+    input.cfapps-lead-line-input {
       display: inline-block !important;
       appearance: none;
       font-family: inherit !important;
@@ -176,43 +176,43 @@ html > body > .eager-lead-line {
     }
 
     @media (max-width: 50em) {
-      input.eager-lead-line-input {
+      input.cfapps-lead-line-input {
         width: 10em !important
       }
     }
 
     @media (max-width: 40em) {
-      input.eager-lead-line-input {
+      input.cfapps-lead-line-input {
         width: 100% !important;
         margin-bottom: .5em !important
       }
     }
 
-    input.eager-lead-line-input::-webkit-input-placeholder {
+    input.cfapps-lead-line-input::-webkit-input-placeholder {
       color: rgba(255, 255, 255, .5);
       font-family: inherit
     }
 
-    input.eager-lead-line-input:-moz-placeholder {
+    input.cfapps-lead-line-input:-moz-placeholder {
       color: rgba(255, 255, 255, .5);
       font-family: inherit
     }
 
-    input.eager-lead-line-input::-moz-placeholder {
+    input.cfapps-lead-line-input::-moz-placeholder {
       color: rgba(255, 255, 255, .5);
       font-family: inherit
     }
 
-    input.eager-lead-line-input:-ms-input-placeholder {
+    input.cfapps-lead-line-input:-ms-input-placeholder {
       color: rgba(255, 255, 255, .5);
       font-family: inherit
     }
 
-    .eager-lead-line-link {
+    .cfapps-lead-line-link {
       display: inline !important
     }
 
-    eager-lead-line button.eager-lead-line-button {
+    cfapps-lead-line button.cfapps-lead-line-button {
       position: relative !important;
       display: inline-block !important;
       vertical-align: baseline !important;
@@ -238,7 +238,7 @@ html > body > .eager-lead-line {
     }
 
     @media (max-width: 40em) {
-      .eager-lead-line-button {
+      .cfapps-lead-line-button {
         padding-left: 1.6em !important;
         padding-right: 1.6em !important;
         max-width: 100% !important;
@@ -247,13 +247,13 @@ html > body > .eager-lead-line {
     }
 
     @font-face {
-      font-family: "eager-lead-line-icons";
+      font-family: "cfapps-lead-line-icons";
       font-style: normal;
       font-weight: normal;
       src: url(data:application/x-font-woff;charset=utf-8;base64,d09GRk9UVE8AAAOgAAoAAAAABXwAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABDRkYgAAAA9AAAAMAAAADRKjcpT0ZGVE0AAAG0AAAAGgAAABxzCc2eT1MvMgAAAdAAAABIAAAAYIDKBSljbWFwAAACGAAAADcAAAFCAA0i4WhlYWQAAAJQAAAALwAAADYDttYWaGhlYQAAAoAAAAAgAAAAJAatAehobXR4AAACoAAAAAgAAAAIA/oAAG1heHAAAAKoAAAABgAAAAYAAlAAbmFtZQAAArAAAADYAAABsEnBB1pwb3N0AAADiAAAABYAAAAg/50AZ3icY2RgYWFgZGTkSU1MTy3SzUzOzytmYGRiYGRw/CHD9EOW+YcESw8PYwQP80ceFjkuBpYODfnubjiDh7275MekXx2sMgxd/DIMDAIyDL2CMgwcMgwnhRiYQcbwMkgwKBdlpmeUJGeklhXl5yFZhGwnAwNjOwMTI6OCeffHXzwfGT9+/PCR+aPY96O/bvw+yvbxX5HoL54P/3jY+X5M+tEi+if8x4yAiB9af1L/APGxUFa+HxNFukW7ebgAOkZGo3icY2BgYGQAggsFDokg+qLPsXkwGgBEYgblAAB4nGNgZvzLOIGBlYGD1Zh1JgMDoxyEZr7OkMYkxAAErAwQ0MCACgLSXFMYHBSsFKzY0v6lMexg/sIgDhRmhCtQAEJGAEQ9C294nGNgYGBmgGAZBkYGELAB8hjBfBYGBSDNAoRAvoLV//8Q8v5xqEoGRjYGGHN4AiI8BwCY4gcNAHicY2BkYGAA4i3P72rH89t8ZeDmYACBiz7H5iHo/y8Z/zF/AXI5GJhAogBqdw1CAHicY2BkYGD+8v8lww7GvwwM//8z/mMAiqAAJgDAhweXAf0AAAH9AAAAAFAAAAIAAHicjY+9DcIwEIVfIEHiR5SI0gUSlSM7AgoGoKSkR8iK0sSSwwyMwBiMwQCMwQDUPJsrKCiwdPZ3d+9+DGCCKzLEk2GMuXAPBYxwH0tchHNq7sIF+Sk8wDibUpnlQ0ZmqSpyDyMshPvYYyOcU3MTLsgP4QH5BYcjat4BGg1O8GjRAe5Yu6Cbk2/pfMUlskv+Ob0h1StUKPkPhS3td9dPzlKlsaJVJIs12/n2vPOhdqoqjdqqr+n0rNErXRlL4T/bHlK+Yz5m47y4Fw4udI1vlS3NX33eEhBDMnicY2BmAIP/sxjSgBQjAxoAAC6qAgQAAA==) format("woff");
     }
 
-    .eager-lead-line-button:after {
+    .cfapps-lead-line-button:after {
       display: inline-block !important;
       position: absolute !important;
       top: 0 !important;
@@ -261,7 +261,7 @@ html > body > .eager-lead-line {
       margin-top: auto !important;
       margin-bottom: auto !important;
       right: .75em !important;
-      font-family: "eager-lead-line-icons";
+      font-family: "cfapps-lead-line-icons";
       content: "\203A";
       padding-left: .3em !important;
       color: inherit !important;
@@ -272,21 +272,21 @@ html > body > .eager-lead-line {
       line-height: 1 !important
     }
 
-    .eager-lead-line-button[disabled] {
+    .cfapps-lead-line-button[disabled] {
       cursor: not-allowed
     }
 
-    .eager-lead-line-button:not([disabled]):hover {
+    .cfapps-lead-line-button:not([disabled]):hover {
       box-shadow: none !important;
       opacity: 1
     }
 
-    .eager-lead-line-button:not([disabled]):hover:active {
+    .cfapps-lead-line-button:not([disabled]):hover:active {
       box-shadow: none !important;
       opacity: .7
     }
 
-    .eager-lead-line-button:not([disabled]):focus:before {
+    .cfapps-lead-line-button:not([disabled]):focus:before {
       content: "";
       position: absolute;
       top: 2px;
@@ -299,11 +299,11 @@ html > body > .eager-lead-line {
       transition: opacity .3s ease-in-out
     }
 
-    .eager-lead-line-button:not([disabled]):focus:active:before {
+    .cfapps-lead-line-button:not([disabled]):focus:active:before {
       opacity: 0
     }
 
-  .eager-lead-line-branding {
+  .cfapps-lead-line-branding {
     position: absolute !important;
     left: 0;
     padding: 0 1.5em !important;
@@ -316,7 +316,7 @@ html > body > .eager-lead-line {
   }
 
     @media (max-width: 40em) {
-      .eager-lead-line-branding {
+      .cfapps-lead-line-branding {
         position: relative !important;
         top: .4em !important;
         text-align: center !important;
@@ -324,16 +324,16 @@ html > body > .eager-lead-line {
         padding: 0 !important
       }
 
-      html[eager-lead-line-goal="announcement"] .eager-lead-line-branding {
+      html[cfapps-lead-line-goal="announcement"] .cfapps-lead-line-branding {
         display: none !important
       }
     }
 
-    a.eager-lead-line-branding-link {
+    a.cfapps-lead-line-branding-link {
       color: inherit;
       opacity: .4
     }
 
-      a.eager-lead-line-branding-link:hover {
+      a.cfapps-lead-line-branding-link:hover {
         opacity: .8
       }

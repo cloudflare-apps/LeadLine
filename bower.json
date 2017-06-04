@@ -1,9 +1,9 @@
 {
   "name": "LeadLine",
-  "homepage": "https://github.com/EagerIO/LeadLine",
+  "homepage": "https://github.com/CloudflareApps/LeadLine",
   "license": "MIT",
   "private": true,
   "devDependencies": {
-    "email-utils": "git@github.com:EagerIO/EmailUtils.git#38dfb86c7d8bba0f279942efaa4b1a597ffa23c9"
+    "email-utils": "git@github.com:CloudflareApps/EmailUtils.git#38dfb86c7d8bba0f279942efaa4b1a597ffa23c9"
   }
 }

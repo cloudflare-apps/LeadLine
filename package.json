@@ -1,17 +1,17 @@
 {
   "name": "LeadLine",
   "description": "",
-  "main": "eager-lead-line.js",
+  "main": "lead-line.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/EagerIO/LeadBox.git"
+    "url": "git://github.com/CloudflareApps/LeadLine.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/EagerIO/LeadBox/issues"
+    "url": "https://github.com/CloudflareApps/LeadLine/issues"
   },
-  "homepage": "https://github.com/EagerIO/LeadBox",
+  "homepage": "https://www.cloudflare.com/apps/lead-line",
   "private": true,
   "devDependencies": {
     "gulp": "^3.9.0",
