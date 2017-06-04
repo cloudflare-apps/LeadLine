@@ -191,7 +191,7 @@
   },
   "hooks": [
     {
-      "endpoint": "http://provisioner.eager.io/{{ install.options.account.service }}/hook",
+      "endpoint": "https://provisioner.appstore.cfdata.org/{{ install.options.account.service }}/hook",
       "events": ["option-change:account", "preview"],
       "block": true,
       "if": "install.options.signupDestination == 'service' && install.options.account && install.options.account.service",
@@ -202,7 +202,7 @@
       }
     },
     {
-      "endpoint": "http://provisioner.eager.io/constant-contact/hook",
+      "endpoint": "https://provisioner.appstore.cfdata.org/constant-contact/hook",
       "events": ["option-change:list"],
       "block": true,
       "if": "install.options.signupDestination == 'service' && install.options.account && install.options.account.service == 'constant-contact'",
